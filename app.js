@@ -289,10 +289,13 @@ const state = {
     columns: 4,
     knobs: 2,
     layers: [
+      { buttons: Array(3).fill(null).map(() => Array(4).fill('')), knobs: [{ ccw: '', press: '', cw: '' }, { ccw: '', press: '', cw: '' }] },
+      { buttons: Array(3).fill(null).map(() => Array(4).fill('')), knobs: [{ ccw: '', press: '', cw: '' }, { ccw: '', press: '', cw: '' }] },
       { buttons: Array(3).fill(null).map(() => Array(4).fill('')), knobs: [{ ccw: '', press: '', cw: '' }, { ccw: '', press: '', cw: '' }] }
     ]
   },
   activeLayer: 0,
+  modeLabels: ['Design Tools', 'Layout & Align', 'Typography'],
   selectedTarget: { type: 'button', row: 0, col: 0 },
   activeModifiers: new Set(),
   activePaletteTab: 'figma',
@@ -878,6 +881,65 @@ async function loadProfileList() {
   }
 }
 
+// Setup Mode Tabs & Custom Labels
+function setupModeTabs() {
+  // Restore saved labels if available
+  try {
+    const saved = localStorage.getItem('ax12_mode_labels');
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      if (Array.isArray(parsed) && parsed.length >= 3) {
+        state.modeLabels = parsed;
+      }
+    }
+  } catch (e) {}
+
+  // Apply labels to UI and setup inline editing
+  for (let i = 0; i < 3; i++) {
+    const el = document.getElementById(`layerName${i}`);
+    if (el) {
+      el.textContent = state.modeLabels[i] || `Mode ${i + 1}`;
+
+      el.addEventListener('input', () => {
+        state.modeLabels[i] = el.textContent.trim() || `Mode ${i + 1}`;
+        try {
+          localStorage.setItem('ax12_mode_labels', JSON.stringify(state.modeLabels));
+        } catch (e) {}
+      });
+
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          el.blur();
+        }
+      });
+    }
+  }
+
+  // Layer Tab Clicks
+  document.querySelectorAll('.layer-tab').forEach(tab => {
+    tab.addEventListener('click', (e) => {
+      // If clicking inside the editable text, don't trigger layer switch logic that could reset focus
+      if (e.target.classList.contains('layer-label-text')) return;
+
+      document.querySelectorAll('.layer-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      state.activeLayer = parseInt(tab.dataset.layer, 10);
+
+      // Ensure layer exists in config
+      if (!state.config.layers[state.activeLayer]) {
+        state.config.layers[state.activeLayer] = {
+          buttons: Array(3).fill(null).map(() => Array(4).fill('')),
+          knobs: [{ ccw: '', press: '', cw: '' }, { ccw: '', press: '', cw: '' }]
+        };
+      }
+
+      renderMacropad();
+      updateInspector();
+    });
+  });
+}
+
 // Application Initialization
 async function init() {
   setupEvents();
@@ -888,10 +950,20 @@ async function init() {
     const res = await window.ax12API.loadConfig();
     if (res.success && res.config) {
       state.config = res.config;
+      // Ensure config has at least 3 layers
+      if (!Array.isArray(state.config.layers)) state.config.layers = [];
+      while (state.config.layers.length < 3) {
+        state.config.layers.push({
+          buttons: Array(3).fill(null).map(() => Array(4).fill('')),
+          knobs: [{ ccw: '', press: '', cw: '' }, { ccw: '', press: '', cw: '' }]
+        });
+      }
     }
   } catch (e) {
     console.error('Error loading config:', e);
   }
+
+  setupModeTabs();
 
   // Load profiles list
   await loadProfileList();

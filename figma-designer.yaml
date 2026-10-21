@@ -4,16 +4,22 @@ columns: 4
 knobs: 2
 layers:
   - buttons:
-      # 12 Mechanical Keys for Figma Design & Productivity
-      - ["v", "f", "r", "p"]
-      - ["t", "shift-a", "opt-cmd-k", "cmd-g"]
-      - ["opt-cmd-c", "opt-cmd-v", "shift-h", "cmd-d"]
+      - - v
+        - f
+        - r
+        - p
+      - - t
+        - shift-a
+        - opt-cmd-k
+        - cmd-g
+      - - opt-cmd-c
+        - opt-cmd-v
+        - shift-h
+        - cmd-d
     knobs:
-      # Knob 1: Zoom Controls (Zoom Out / Zoom to Fit / Zoom In)
-      - ccw: 'cmd-minus'
-        press: 'shift-1'
-        cw: 'cmd-equal'
-      # Knob 2: Layer Arrangement (Send Backward / Quick Actions / Bring Forward)
-      - ccw: 'cmd-leftbracket'
-        press: 'cmd-slash'
-        cw: 'cmd-rightbracket'
+      - ccw: cmd-minus
+        press: shift-1
+        cw: cmd-equal
+      - ccw: cmd-leftbracket
+        press: cmd-slash
+        cw: cmd-rightbracket

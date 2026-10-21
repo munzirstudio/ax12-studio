@@ -231,7 +231,106 @@ body {
   border-right: 1px solid var(--border-subtle);
 }
 
+/* Top Center Mode Bar */
+.mode-bar-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 14px;
+}
 
+.layer-nav {
+  display: inline-flex;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  padding: 4px;
+  border-radius: 12px;
+  gap: 4px;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.layer-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.layer-tab:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.layer-tab.active {
+  color: #fff;
+  background: #1f2533;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.layer-tab .layer-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.layer-tab.active .layer-num {
+  background: var(--accent-cyan);
+  color: #050b14;
+  box-shadow: 0 0 8px var(--accent-cyan-glow);
+}
+
+.layer-label-text {
+  cursor: text;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: all 0.15s;
+  border-bottom: 1px dashed transparent;
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.layer-label-text:hover {
+  border-bottom-color: rgba(255, 255, 255, 0.3);
+}
+
+.layer-label-text:focus {
+  background: #12151c;
+  border-bottom-color: var(--accent-cyan);
+  outline: none;
+  color: #fff;
+}
+
+.layer-rename-icon {
+  font-size: 10px;
+  opacity: 0.3;
+  transition: opacity 0.15s;
+}
+
+.layer-tab:hover .layer-rename-icon {
+  opacity: 0.8;
+}
 
 /* Pad Hardware Visualizer */
 .pad-stage {

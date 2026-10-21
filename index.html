@@ -75,6 +75,27 @@
     <main class="app-main">
       <!-- Left / Center: Interactive Visual Macropad Canvas -->
       <section class="canvas-section">
+        <!-- Top Center Configurable Mode Tabs -->
+        <div class="mode-bar-center">
+          <div class="layer-nav" id="layerNav">
+            <button class="layer-tab active" data-layer="0">
+              <span class="layer-num">1</span>
+              <span class="layer-label-text" id="layerName0" contenteditable="true" spellcheck="false" title="Click to rename Mode 1">Mode 1</span>
+              <span class="layer-rename-icon" title="Click label to rename">✏️</span>
+            </button>
+            <button class="layer-tab" data-layer="1">
+              <span class="layer-num">2</span>
+              <span class="layer-label-text" id="layerName1" contenteditable="true" spellcheck="false" title="Click to rename Mode 2">Mode 2</span>
+              <span class="layer-rename-icon" title="Click label to rename">✏️</span>
+            </button>
+            <button class="layer-tab" data-layer="2">
+              <span class="layer-num">3</span>
+              <span class="layer-label-text" id="layerName2" contenteditable="true" spellcheck="false" title="Click to rename Mode 3">Mode 3</span>
+              <span class="layer-rename-icon" title="Click label to rename">✏️</span>
+            </button>
+          </div>
+        </div>
+
         <!-- The Physical AX12 Macropad Chassis -->
         <div class="pad-stage">
           <div class="macropad-hardware">
