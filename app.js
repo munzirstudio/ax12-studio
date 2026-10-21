@@ -222,51 +222,52 @@ const PALETTES = {
     { name: 'Decrease Spacing', code: 'opt-comma', icon: '↔-' }
   ],
   standard: [
-    { name: 'Space', code: 'space' },
-    { name: 'Enter', code: 'enter' },
-    { name: 'Escape', code: 'escape' },
-    { name: 'Backspace', code: 'backspace' },
-    { name: 'Tab', code: 'tab' },
-    { name: 'Delete', code: 'delete' },
-    { name: 'Arrow Up', code: 'up' },
-    { name: 'Arrow Down', code: 'down' },
-    { name: 'Arrow Left', code: 'left' },
-    { name: 'Arrow Right', code: 'right' },
-    { name: 'Page Up', code: 'pageup' },
-    { name: 'Page Down', code: 'pagedown' },
-    { name: 'Home', code: 'home' },
-    { name: 'End', code: 'end' },
-    ...'abcdefghijklmnopqrstuvwxyz0123456789'.split('').map(ch => ({ name: ch.toUpperCase(), code: ch })),
-    { name: '-', code: 'minus' },
-    { name: '=', code: 'equal' },
-    { name: '[', code: 'leftbracket' },
-    { name: ']', code: 'rightbracket' },
-    { name: '\\', code: 'backslash' },
-    { name: ';', code: 'semicolon' },
-    { name: "'", code: 'quote' },
-    { name: '`', code: 'grave' },
-    { name: ',', code: 'comma' },
-    { name: '.', code: 'dot' },
-    { name: '/', code: 'slash' }
+    { name: 'Space', code: 'space', icon: '␣' },
+    { name: 'Enter', code: 'enter', icon: '⏎' },
+    { name: 'Escape', code: 'escape', icon: '⎋' },
+    { name: 'Backspace', code: 'backspace', icon: '⌫' },
+    { name: 'Tab', code: 'tab', icon: '⇥' },
+    { name: 'Delete', code: 'delete', icon: '⌦' },
+    { name: 'Arrow Up', code: 'up', icon: '↑' },
+    { name: 'Arrow Down', code: 'down', icon: '↓' },
+    { name: 'Arrow Left', code: 'left', icon: '←' },
+    { name: 'Arrow Right', code: 'right', icon: '→' },
+    { name: 'Page Up', code: 'pageup', icon: '⇞' },
+    { name: 'Page Down', code: 'pagedown', icon: '⇟' },
+    { name: 'Home', code: 'home', icon: '↖' },
+    { name: 'End', code: 'end', icon: '↘' },
+    ...'abcdefghijklmnopqrstuvwxyz'.split('').map(ch => ({ name: ch.toUpperCase(), code: ch, icon: '🔤' })),
+    ...'0123456789'.split('').map(ch => ({ name: ch, code: ch, icon: '🔢' })),
+    { name: '-', code: 'minus', icon: '➖' },
+    { name: '=', code: 'equal', icon: '🟰' },
+    { name: '[', code: 'leftbracket', icon: '[' },
+    { name: ']', code: 'rightbracket', icon: ']' },
+    { name: '\\', code: 'backslash', icon: '\\' },
+    { name: ';', code: 'semicolon', icon: ';' },
+    { name: "'", code: 'quote', icon: "'" },
+    { name: '`', code: 'grave', icon: '`' },
+    { name: ',', code: 'comma', icon: ',' },
+    { name: '.', code: 'dot', icon: '.' },
+    { name: '/', code: 'slash', icon: '/' }
   ],
   numpad: [
-    { name: 'Numpad 0', code: 'numpad0' },
-    { name: 'Numpad 1', code: 'numpad1' },
-    { name: 'Numpad 2', code: 'numpad2' },
-    { name: 'Numpad 3', code: 'numpad3' },
-    { name: 'Numpad 4', code: 'numpad4' },
-    { name: 'Numpad 5', code: 'numpad5' },
-    { name: 'Numpad 6', code: 'numpad6' },
-    { name: 'Numpad 7', code: 'numpad7' },
-    { name: 'Numpad 8', code: 'numpad8' },
-    { name: 'Numpad 9', code: 'numpad9' },
-    { name: 'Numpad +', code: 'numpadplus' },
-    { name: 'Numpad -', code: 'numpadminus' },
-    { name: 'Numpad *', code: 'numpadasterisk' },
-    { name: 'Numpad /', code: 'numpadslash' },
-    { name: 'Numpad Enter', code: 'numpadenter' },
-    { name: 'Numpad Equal', code: 'numpadequal' },
-    { name: 'Numpad .', code: 'numpaddot' }
+    { name: 'Numpad 0', code: 'numpad0', icon: '0️⃣' },
+    { name: 'Numpad 1', code: 'numpad1', icon: '1️⃣' },
+    { name: 'Numpad 2', code: 'numpad2', icon: '2️⃣' },
+    { name: 'Numpad 3', code: 'numpad3', icon: '3️⃣' },
+    { name: 'Numpad 4', code: 'numpad4', icon: '4️⃣' },
+    { name: 'Numpad 5', code: 'numpad5', icon: '5️⃣' },
+    { name: 'Numpad 6', code: 'numpad6', icon: '6️⃣' },
+    { name: 'Numpad 7', code: 'numpad7', icon: '7️⃣' },
+    { name: 'Numpad 8', code: 'numpad8', icon: '8️⃣' },
+    { name: 'Numpad 9', code: 'numpad9', icon: '9️⃣' },
+    { name: 'Numpad +', code: 'numpadplus', icon: '➕' },
+    { name: 'Numpad -', code: 'numpadminus', icon: '➖' },
+    { name: 'Numpad *', code: 'numpadasterisk', icon: '✖️' },
+    { name: 'Numpad /', code: 'numpadslash', icon: '➗' },
+    { name: 'Numpad Enter', code: 'numpadenter', icon: '⏎' },
+    { name: 'Numpad Equal', code: 'numpadequal', icon: '🟰' },
+    { name: 'Numpad .', code: 'numpaddot', icon: '•' }
   ],
   mouse: [
     { name: 'Left Click', code: 'click', icon: '👆' },
@@ -277,7 +278,8 @@ const PALETTES = {
   ],
   function: Array.from({ length: 24 }, (_, i) => ({
     name: `F${i + 1}`,
-    code: `f${i + 1}`
+    code: `f${i + 1}`,
+    icon: '⚡'
   }))
 };
 
@@ -296,6 +298,7 @@ const state = {
   },
   activeLayer: 0,
   modeLabels: ['Design Tools', 'Layout & Align', 'Typography'],
+  keyMetadata: {}, // key `${layer}_${r}_${c}` -> { icon, name, code }
   selectedTarget: { type: 'button', row: 0, col: 0 },
   activeModifiers: new Set(),
   activePaletteTab: 'figma',
@@ -303,6 +306,99 @@ const state = {
   isRecording: false,
   deviceConnected: false
 };
+
+// Normalize shortcut code for comparison regardless of modifier order
+function normalizeCode(str) {
+  if (!str || typeof str !== 'string') return '';
+  const parts = str.toLowerCase().split('-').map(s => s.trim()).filter(Boolean);
+  const mods = [];
+  let key = '';
+  for (const p of parts) {
+    if (['cmd', 'win'].includes(p)) mods.push('cmd');
+    else if (['opt', 'alt'].includes(p)) mods.push('opt');
+    else if (['ctrl'].includes(p)) mods.push('ctrl');
+    else if (['shift'].includes(p)) mods.push('shift');
+    else key = p;
+  }
+  mods.sort();
+  return [...mods, key].join('-');
+}
+
+// Global cached lookup map across all palettes
+let presetLookupMap = null;
+function getPresetLookupMap() {
+  if (presetLookupMap) return presetLookupMap;
+  presetLookupMap = new Map();
+  const paletteKeys = ['figma', 'presets', 'media', 'mouse', 'function', 'numpad', 'standard'];
+  for (const pk of paletteKeys) {
+    const list = PALETTES[pk] || [];
+    for (const item of list) {
+      if (!item.code) continue;
+      const norm = normalizeCode(item.code);
+      if (!presetLookupMap.has(norm)) {
+        presetLookupMap.set(norm, item);
+      }
+    }
+  }
+  return presetLookupMap;
+}
+
+function findPresetByCode(rawCode) {
+  if (!rawCode) return null;
+  const norm = normalizeCode(rawCode);
+  const map = getPresetLookupMap();
+  return map.get(norm) || null;
+}
+
+function setKeyPresetMeta(layerIdx, row, col, meta) {
+  const metaKey = `${layerIdx}_${row}_${col}`;
+  state.keyMetadata[metaKey] = meta;
+  try {
+    localStorage.setItem('ax12_key_metadata', JSON.stringify(state.keyMetadata));
+  } catch (e) {}
+}
+
+function getKeyDisplayInfo(keyVal, layerIdx, row, col) {
+  if (!keyVal || typeof keyVal !== 'string' || keyVal.trim() === '') {
+    return {
+      icon: '',
+      name: 'Unassigned',
+      shortcut: '-',
+      isEmpty: true
+    };
+  }
+
+  // 1. Check user-assigned preset metadata for this specific key
+  const metaKey = `${layerIdx}_${row}_${col}`;
+  const saved = state.keyMetadata[metaKey];
+  if (saved && normalizeCode(saved.code) === normalizeCode(keyVal)) {
+    return {
+      icon: saved.icon || '⚡',
+      name: saved.name || formatShortcut(keyVal),
+      shortcut: keyVal,
+      isEmpty: false
+    };
+  }
+
+  // 2. Lookup in all palettes by code
+  const preset = findPresetByCode(keyVal);
+  if (preset) {
+    return {
+      icon: preset.icon || '⌨️',
+      name: preset.name,
+      shortcut: preset.code || keyVal,
+      isEmpty: false
+    };
+  }
+
+  // 3. Fallback for custom or recorded shortcuts
+  return {
+    icon: '⌨️',
+    name: formatShortcut(keyVal),
+    shortcut: keyVal,
+    isEmpty: false
+  };
+}
 
 // Format raw shortcut string into human-readable Mac representation
 function formatShortcut(rawStr) {
@@ -432,16 +528,25 @@ function renderKeys() {
       keyEl.dataset.row = r;
       keyEl.dataset.col = c;
 
-      const formatted = formatShortcut(keyVal);
-      const isCustomShortcut = keyVal.includes('-');
+      const info = getKeyDisplayInfo(keyVal, state.activeLayer, r, c);
 
-      keyEl.innerHTML = `
-        <div class="key-coords">R${r + 1}C${c + 1}</div>
-        <div class="key-legend ${isCustomShortcut ? 'has-mod' : ''}" title="${keyVal || 'Unassigned'}">
-          ${keyVal ? formatted : '<span style="color: var(--text-faint);">-</span>'}
-        </div>
-        <div class="key-type-indicator"></div>
-      `;
+      if (info.isEmpty) {
+        keyEl.innerHTML = `
+          <div class="key-preset-display unassigned">
+            <span class="key-preset-icon empty">➕</span>
+            <span class="key-preset-name empty">Unassigned</span>
+            <span class="key-preset-shortcut empty">-</span>
+          </div>
+        `;
+      } else {
+        keyEl.innerHTML = `
+          <div class="key-preset-display">
+            <span class="key-preset-icon">${info.icon}</span>
+            <span class="key-preset-name" title="${info.name}">${info.name}</span>
+            <span class="key-preset-shortcut" title="${keyVal}">${info.shortcut}</span>
+          </div>
+        `;
+      }
 
       keyEl.addEventListener('click', () => {
         state.selectedTarget = { type: 'button', row: r, col: c };
@@ -512,8 +617,14 @@ function updateInspector() {
 
   if (state.selectedTarget.type === 'button') {
     const { row, col } = state.selectedTarget;
-    titleEl.textContent = `Keycap (Row ${row + 1}, Col ${col + 1})`;
-    subEl.textContent = `Physical Key #${row * 4 + col + 1} on your AX12 pad.`;
+    const info = getKeyDisplayInfo(val, state.activeLayer, row, col);
+    if (!info.isEmpty && info.name !== 'Unassigned') {
+      titleEl.innerHTML = `${info.icon} ${info.name} <span style="font-size: 11px; opacity: 0.6; font-weight: 400;">(Key #${row * 4 + col + 1})</span>`;
+      subEl.textContent = `Physical Key #${row * 4 + col + 1} (Row ${row + 1}, Col ${col + 1}) on AX12 pad.`;
+    } else {
+      titleEl.textContent = `Keycap (Row ${row + 1}, Col ${col + 1})`;
+      subEl.textContent = `Physical Key #${row * 4 + col + 1} on your AX12 pad.`;
+    }
   } else {
     const { knobIndex, action } = state.selectedTarget;
     const actionName = action === 'ccw' ? 'Turn Left (Counter-Clockwise)' :
@@ -574,8 +685,18 @@ function renderPalette() {
       if (!item.code.includes('-') && state.activeModifiers.size > 0) {
         finalCode = buildShortcut(state.activeModifiers, item.code);
       }
+
+      // Store preset metadata for keycap display
+      if (state.selectedTarget.type === 'button') {
+        setKeyPresetMeta(state.activeLayer, state.selectedTarget.row, state.selectedTarget.col, {
+          icon: item.icon || '⚡',
+          name: item.name,
+          code: finalCode
+        });
+      }
+
       setTargetValue(state.selectedTarget, state.activeLayer, finalCode);
-      showToast(`Assigned ${formatShortcut(finalCode)}`, '✓');
+      showToast(`Assigned ${item.name || formatShortcut(finalCode)}`, item.icon || '✓');
     });
 
     grid.appendChild(btn);
@@ -716,6 +837,13 @@ function setupEvents() {
 
   // Clear binding button
   document.getElementById('btnClearBinding').addEventListener('click', () => {
+    if (state.selectedTarget.type === 'button') {
+      const metaKey = `${state.activeLayer}_${state.selectedTarget.row}_${state.selectedTarget.col}`;
+      delete state.keyMetadata[metaKey];
+      try {
+        localStorage.setItem('ax12_key_metadata', JSON.stringify(state.keyMetadata));
+      } catch (e) {}
+    }
     setTargetValue(state.selectedTarget, state.activeLayer, '');
     showToast('Binding cleared', '🗑️');
   });
@@ -942,6 +1070,14 @@ function setupModeTabs() {
 
 // Application Initialization
 async function init() {
+  // Restore saved key metadata if available
+  try {
+    const savedMeta = localStorage.getItem('ax12_key_metadata');
+    if (savedMeta) {
+      state.keyMetadata = JSON.parse(savedMeta) || {};
+    }
+  } catch (e) {}
+
   setupEvents();
   setupKeystrokeRecorder();
 

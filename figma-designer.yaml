@@ -4,46 +4,62 @@ columns: 4
 knobs: 2
 layers:
   - buttons:
-      # Mode 1: Core Design Tools & Component Ops
-      - ["v", "f", "r", "p"]
-      - ["t", "shift-a", "opt-cmd-k", "cmd-g"]
-      - ["opt-cmd-c", "opt-cmd-v", "shift-h", "cmd-d"]
+      - - v
+        - f
+        - r
+        - p
+      - - t
+        - shift-a
+        - opt-cmd-k
+        - cmd-g
+      - - opt-cmd-c
+        - opt-cmd-v
+        - shift-h
+        - cmd-d
     knobs:
-      # Knob 1: Zoom Out / Fit / Zoom In
-      - ccw: 'cmd-minus'
-        press: 'shift-1'
-        cw: 'cmd-equal'
-      # Knob 2: Send Backward / Quick Actions / Bring Forward
-      - ccw: 'cmd-leftbracket'
-        press: 'cmd-slash'
-        cw: 'cmd-rightbracket'
-
+      - ccw: cmd-minus
+        press: shift-1
+        cw: cmd-equal
+      - ccw: cmd-leftbracket
+        press: cmd-slash
+        cw: cmd-rightbracket
   - buttons:
-      # Mode 2: Alignment, Grouping & Export
-      - ["opt-w", "opt-v", "opt-a", "opt-d"]
-      - ["shift-cmd-g", "opt-cmd-g", "shift-cmd-h", "shift-cmd-l"]
-      - ["shift-cmd-r", "shift-cmd-c", "shift-cmd-e", "shift-delete"]
+      - - opt-w
+        - opt-v
+        - opt-a
+        - opt-d
+      - - shift-cmd-g
+        - opt-cmd-g
+        - shift-cmd-h
+        - shift-cmd-l
+      - - shift-cmd-r
+        - shift-cmd-c
+        - shift-cmd-e
+        - shift-delete
     knobs:
-      # Knob 1: Prev Frame / Zoom to Selection / Next Frame
-      - ccw: 'shift-n'
-        press: 'shift-2'
-        cw: 'n'
-      # Knob 2: Distribute Horizontal / Tidy Up / Distribute Vertical
-      - ccw: 'ctrl-opt-h'
-        press: 'ctrl-opt-t'
-        cw: 'ctrl-opt-v'
-
+      - ccw: shift-n
+        press: shift-2
+        cw: "n"
+      - ccw: ctrl-opt-h
+        press: ctrl-opt-t
+        cw: ctrl-opt-v
   - buttons:
-      # Mode 3: Typography & Text Styling
-      - ["cmd-b", "cmd-i", "cmd-u", "shift-cmd-x"]
-      - ["opt-cmd-l", "opt-cmd-t", "opt-cmd-r", "cmd-k"]
-      - ["shift-cmd-8", "shift-cmd-7", "shift-cmd-comma", "shift-cmd-dot"]
+      - - cmd-b
+        - cmd-i
+        - cmd-u
+        - shift-cmd-x
+      - - opt-cmd-l
+        - opt-cmd-t
+        - opt-cmd-r
+        - cmd-k
+      - - shift-cmd-8
+        - shift-cmd-7
+        - shift-cmd-comma
+        - shift-cmd-dot
     knobs:
-      # Knob 1: Decrease Font / Zoom 100% / Increase Font
-      - ccw: 'shift-cmd-comma'
-        press: 'cmd-0'
-        cw: 'shift-cmd-dot'
-      # Knob 2: Decrease Line Height / Toggle UI / Increase Line Height
-      - ccw: 'opt-shift-comma'
-        press: 'cmd-backslash'
-        cw: 'opt-shift-dot'
+      - ccw: shift-cmd-comma
+        press: cmd-0
+        cw: shift-cmd-dot
+      - ccw: opt-shift-comma
+        press: cmd-backslash
+        cw: opt-shift-dot
