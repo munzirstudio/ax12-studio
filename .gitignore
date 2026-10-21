@@ -1,0 +1,12 @@
+# Node modules
+node_modules/
+package-lock.json
+
+# Build outputs & binaries
+dist/
+AX12 Studio.app/
+*.log
+
+# OS artifacts
+.DS_Store
+Thumbs.db

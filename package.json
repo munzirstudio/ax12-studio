@@ -1,0 +1,24 @@
+{
+  "name": "ax12-studio",
+  "version": "1.0.0",
+  "description": "Visual Studio & Configurator for AX12 Macropad",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-packager . 'AX12 Studio' --platform=darwin --arch=arm64 --out=dist --overwrite --ignore=dist"
+  },
+  "keywords": [
+    "macropad",
+    "ax12",
+    "keyboard",
+    "ch57x",
+    "gui"
+  ],
+  "author": "Munzir Madhadzir",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^45.0.0",
+    "electron-packager": "^17.1.2",
+    "js-yaml": "^4.1.0"
+  }
+}

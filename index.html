@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AX12 Studio</title>
+  <link rel="stylesheet" href="app.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Top Bar with macOS Window Drag Support -->
+    <header class="app-header">
+      <div class="header-drag-region"></div>
+      <div class="header-left">
+        <div class="app-branding">
+          <div class="brand-badge">AX12</div>
+          <span class="brand-title">Studio</span>
+          <span class="brand-sub">Macropad Configurator</span>
+        </div>
+      </div>
+
+      <div class="header-center">
+        <!-- Profile Switcher -->
+        <div class="profile-control">
+          <span class="control-label">Profile:</span>
+          <div class="select-wrapper">
+            <select id="profileSelect" title="Select Profile">
+              <option value="figma-designer.yaml">figma-designer.yaml (Figma)</option>
+            </select>
+          </div>
+          <button id="btnSaveProfileAs" class="btn-icon" title="Save As New Profile">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+              <polyline points="17 21 17 13 7 13 7 21"></polyline>
+              <polyline points="7 3 7 8 15 8"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <!-- Device Connection Status -->
+        <div id="deviceBadge" class="device-badge checking">
+          <span class="status-dot"></span>
+          <span id="deviceStatusText">Checking Device...</span>
+          <button id="btnRefreshDevice" class="btn-micro-refresh" title="Check connection again">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="23 4 23 10 17 10"></polyline>
+              <polyline points="1 20 1 14 7 14"></polyline>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+            </svg>
+          </button>
+        </div>
+
+        <button id="btnOpenYamlModal" class="btn-secondary" title="View Raw YAML">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+          <span>YAML</span>
+        </button>
+
+        <button id="btnOpenFolder" class="btn-icon" title="Reveal in Finder">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace Split -->
+    <main class="app-main">
+      <!-- Left / Center: Interactive Visual Macropad Canvas -->
+      <section class="canvas-section">
+        <div class="mode-bar">
+          <div class="mode-bar-header">
+            <div class="hardware-switch-pill">
+              <span class="hw-icon">🔘</span>
+              <span>Hardware Mode Switch</span>
+            </div>
+            <div class="layer-nav" id="layerNav">
+              <button class="layer-tab active" data-layer="0">
+                <span class="layer-num">1</span>
+                <span class="layer-label">Mode 1 • Media</span>
+              </button>
+              <button class="layer-tab" data-layer="1">
+                <span class="layer-num">2</span>
+                <span class="layer-label">Mode 2 • Nav & Gaming</span>
+              </button>
+              <button class="layer-tab" data-layer="2">
+                <span class="layer-num">3</span>
+                <span class="layer-label">Mode 3 • Calculator</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Physical AX12 Macropad Chassis -->
+        <div class="pad-stage">
+          <div class="macropad-hardware">
+            <!-- 4 Corner Screws -->
+            <div class="corner-screw top-left"></div>
+            <div class="corner-screw top-right"></div>
+            <div class="corner-screw bottom-left"></div>
+            <div class="corner-screw bottom-right"></div>
+
+            <div class="chassis-inner">
+              <!-- Left: 3x4 Mechanical Keys Matrix -->
+              <div class="keys-grid" id="keysGrid">
+                <!-- 12 Keys generated via JS -->
+              </div>
+
+              <!-- Divider line -->
+              <div class="hardware-divider"></div>
+
+              <!-- Right: 2 Knurled Rotary Knobs -->
+              <div class="knobs-column" id="knobsColumn">
+                <!-- Knob 1 -->
+                <div class="knob-module" data-knob-index="0">
+                  <div class="knob-label-tag">Knob 1</div>
+                  <div class="knob-body">
+                    <div class="knob-dial">
+                      <div class="knob-notch"></div>
+                      <div class="knob-center-cap" data-action="press" title="Click to configure: Knob 1 Press">
+                        <span class="center-cap-icon">🔘</span>
+                        <span class="center-cap-label">Press</span>
+                      </div>
+                    </div>
+                    <!-- Rotary touch arcs -->
+                    <button class="knob-zone ccw" data-action="ccw" title="Click to configure: Turn Left (CCW)">
+                      <span class="arrow">↺</span>
+                      <span class="zone-text">Turn Left</span>
+                    </button>
+                    <button class="knob-zone cw" data-action="cw" title="Click to configure: Turn Right (CW)">
+                      <span class="arrow">↻</span>
+                      <span class="zone-text">Turn Right</span>
+                    </button>
+                  </div>
+                  <div class="knob-actions-summary" id="knobSummary0">
+                    <!-- Summary generated dynamically -->
+                  </div>
+                </div>
+
+                <!-- Knob 2 -->
+                <div class="knob-module" data-knob-index="1">
+                  <div class="knob-label-tag">Knob 2</div>
+                  <div class="knob-body">
+                    <div class="knob-dial">
+                      <div class="knob-notch"></div>
+                      <div class="knob-center-cap" data-action="press" title="Click to configure: Knob 2 Press">
+                        <span class="center-cap-icon">🔘</span>
+                        <span class="center-cap-label">Press</span>
+                      </div>
+                    </div>
+                    <!-- Rotary touch arcs -->
+                    <button class="knob-zone ccw" data-action="ccw" title="Click to configure: Turn Left (CCW)">
+                      <span class="arrow">↺</span>
+                      <span class="zone-text">Turn Left</span>
+                    </button>
+                    <button class="knob-zone cw" data-action="cw" title="Click to configure: Turn Right (CW)">
+                      <span class="arrow">↻</span>
+                      <span class="zone-text">Turn Right</span>
+                    </button>
+                  </div>
+                  <div class="knob-actions-summary" id="knobSummary1">
+                    <!-- Summary generated dynamically -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Canvas Action Bar -->
+        <div class="canvas-footer">
+          <div class="footer-left">
+            <span id="saveStatusIndicator" class="save-status">
+              <span class="icon-check">✓</span> Ready
+            </span>
+          </div>
+          <div class="footer-actions">
+            <button id="btnValidate" class="btn-secondary" title="Check YAML syntax and validity">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Validate</span>
+            </button>
+            <button id="btnUpload" class="btn-primary hero-btn" title="Sync key mappings directly to your AX12 Macropad">
+              <div class="btn-glow"></div>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+              <span id="btnUploadText">Upload to AX12</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Inspector & Key Palette -->
+      <aside class="inspector-section">
+        <div class="inspector-header">
+          <div class="selected-meta">
+            <span class="section-kicker">CONFIGURATION</span>
+            <h2 id="selectedTargetTitle">Select a Key or Knob</h2>
+            <p id="selectedTargetSubtitle">Click any key or knob action on the macropad to inspect and customize.</p>
+          </div>
+        </div>
+
+        <div class="inspector-content" id="inspectorContent">
+          <!-- Active Binding Preview -->
+          <div class="current-binding-card">
+            <div class="binding-label">Assigned Action:</div>
+            <div class="binding-display">
+              <span id="activeBindingFormatted" class="binding-badge empty">None</span>
+              <button id="btnClearBinding" class="btn-micro" title="Clear this key binding">Clear</button>
+            </div>
+            <div class="raw-code-pill">
+              <span>YAML Code:</span>
+              <code id="activeBindingRaw">none</code>
+            </div>
+          </div>
+
+          <!-- Keystroke Recorder -->
+          <div class="recorder-card">
+            <button id="btnRecordKeystroke" class="btn-record">
+              <span class="record-dot"></span>
+              <span id="recordPromptText">Record Shortcut from Keyboard</span>
+            </button>
+          </div>
+
+          <!-- Modifiers Selector -->
+          <div class="modifiers-group">
+            <label class="group-label">Modifiers:</label>
+            <div class="modifier-chips">
+              <button class="mod-chip" data-mod="cmd">
+                <span class="mod-glyph">⌘</span>
+                <span>Cmd</span>
+              </button>
+              <button class="mod-chip" data-mod="opt">
+                <span class="mod-glyph">⌥</span>
+                <span>Option</span>
+              </button>
+              <button class="mod-chip" data-mod="ctrl">
+                <span class="mod-glyph">⌃</span>
+                <span>Control</span>
+              </button>
+              <button class="mod-chip" data-mod="shift">
+                <span class="mod-glyph">⇧</span>
+                <span>Shift</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Palette Filter & Search -->
+          <div class="palette-header">
+            <label class="group-label">Available Actions & Keys:</label>
+            <div class="search-box">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="paletteSearch" placeholder="Search actions (e.g. vol, play, cmd-z)...">
+            </div>
+          </div>
+
+          <!-- Palette Tabs -->
+          <div class="palette-tabs" id="paletteTabs">
+            <button class="p-tab active" data-category="media">🎵 Media</button>
+            <button class="p-tab" data-category="presets">⚡ Presets</button>
+            <button class="p-tab" data-category="figma">🎨 Figma</button>
+            <button class="p-tab" data-category="standard">⌨️ Standard</button>
+            <button class="p-tab" data-category="numpad">🔢 Numpad</button>
+            <button class="p-tab" data-category="mouse">🖱️ Mouse</button>
+            <button class="p-tab" data-category="function">🛠️ F-Keys</button>
+          </div>
+
+          <!-- Palette Keys Container -->
+          <div class="palette-grid" id="paletteGrid">
+            <!-- Dynamic Buttons Populated via JS -->
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- YAML Modal Drawer -->
+    <div id="yamlModal" class="modal-overlay">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>Generated YAML Configuration</h3>
+          <div class="modal-header-actions">
+            <button id="btnCopyYaml" class="btn-secondary btn-sm">Copy YAML</button>
+            <button id="btnCloseYamlModal" class="btn-icon btn-sm">✕</button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <pre><code id="yamlCodeView"></code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Save As Profile Modal -->
+    <div id="saveAsModal" class="modal-overlay">
+      <div class="modal-card modal-sm">
+        <div class="modal-header">
+          <h3>Save Profile As</h3>
+          <button id="btnCloseSaveAsModal" class="btn-icon btn-sm">✕</button>
+        </div>
+        <div class="modal-body">
+          <label for="newProfileName">Profile Name:</label>
+          <input type="text" id="newProfileName" placeholder="e.g. figma-designer.yaml">
+          <p class="modal-hint">Will be saved locally as a YAML configuration file.</p>
+        </div>
+        <div class="modal-footer">
+          <button id="btnCancelSaveAs" class="btn-secondary">Cancel</button>
+          <button id="btnConfirmSaveAs" class="btn-primary">Save Profile</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast">
+      <span id="toastIcon">✨</span>
+      <span id="toastMessage">Notification</span>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
