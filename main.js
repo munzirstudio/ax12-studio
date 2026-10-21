@@ -70,11 +70,12 @@ function getWorkDir() {
 }
 
 // Helper to execute ch57x-keyboard-tool commands
-function executeTool(subcommand, yamlContent) {
+function executeTool(subcommand, yamlContent, extraArgs = []) {
   return new Promise((resolve) => {
     const toolPath = getToolPath();
     const workDir = getWorkDir();
-    const proc = spawn(toolPath, [subcommand], {
+    const args = [subcommand, ...extraArgs];
+    const proc = spawn(toolPath, args, {
       cwd: workDir,
       env: {
         ...process.env,
@@ -257,3 +258,9 @@ ipcMain.handle('shell:open-folder', async () => {
 ipcMain.handle('config:to-yaml', async (_, configObj) => {
   return configToYaml(configObj);
 });
+
+// Set hardware LED mode
+ipcMain.handle('device:set-led', async (_, modeIndex) => {
+  return await executeTool('led', null, [String(modeIndex)]);
+});
+

@@ -10,5 +10,6 @@ contextBridge.exposeInMainWorld('ax12API', {
   loadProfile: (filename) => ipcRenderer.invoke('profile:load', filename),
   saveProfileAs: (filename, configObj) => ipcRenderer.invoke('profile:save-as', filename, configObj),
   revealInFinder: () => ipcRenderer.invoke('shell:open-folder'),
-  getYamlString: (configObj) => ipcRenderer.invoke('config:to-yaml', configObj)
+  getYamlString: (configObj) => ipcRenderer.invoke('config:to-yaml', configObj),
+  setLedMode: (modeIndex) => ipcRenderer.invoke('device:set-led', modeIndex)
 });

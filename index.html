@@ -42,6 +42,30 @@
       </div>
 
       <div class="header-right">
+        <!-- Backlight LED Control -->
+        <div class="led-control-group" title="AX12 Hardware Backlight Mode">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="led-bulb-icon">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <div class="select-wrapper">
+            <select id="ledModeSelect" title="Hardware Backlight Mode">
+              <option value="2">LED: Reactive</option>
+              <option value="1">LED: Always On</option>
+              <option value="3">LED: Breathing</option>
+              <option value="4">LED: Slow Pulse</option>
+              <option value="0">LED: Off</option>
+            </select>
+          </div>
+        </div>
+
         <!-- Device Connection Status -->
         <div id="deviceBadge" class="device-badge checking">
           <span class="status-dot"></span>

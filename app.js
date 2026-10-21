@@ -987,6 +987,26 @@ function setupEvents() {
     checkDevice();
     showToast('Checking AX12 connection...', '🔍');
   });
+
+  // Backlight LED Mode Selector
+  const ledSelect = document.getElementById('ledModeSelect');
+  if (ledSelect) {
+    ledSelect.addEventListener('change', async (e) => {
+      const mode = e.target.value;
+      const modeName = e.target.options[e.target.selectedIndex].text;
+      try {
+        const res = await window.ax12API.setLedMode(parseInt(mode, 10));
+        if (res.success) {
+          localStorage.setItem('ax12_led_mode', mode);
+          showToast(`${modeName} applied!`, '💡');
+        } else {
+          showToast(`LED error: ${res.stderr || 'Device error'}`, '⚠️');
+        }
+      } catch (err) {
+        showToast('Failed to set LED mode', '✕');
+      }
+    });
+  }
 }
 
 // Load List of Profile YAMLs into Select Dropdown
@@ -1080,6 +1100,18 @@ async function init() {
 
   setupEvents();
   setupKeystrokeRecorder();
+
+  // Restore saved LED mode
+  try {
+    const savedLed = localStorage.getItem('ax12_led_mode');
+    if (savedLed !== null) {
+      const ledSelect = document.getElementById('ledModeSelect');
+      if (ledSelect) {
+        ledSelect.value = savedLed;
+        window.ax12API.setLedMode(parseInt(savedLed, 10)).catch(() => {});
+      }
+    }
+  } catch (e) {}
 
   // Load active config
   try {
