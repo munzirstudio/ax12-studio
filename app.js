@@ -289,15 +289,13 @@ const state = {
     columns: 4,
     knobs: 2,
     layers: [
-      { buttons: Array(3).fill(null).map(() => Array(4).fill('')), knobs: [{ ccw: '', press: '', cw: '' }, { ccw: '', press: '', cw: '' }] },
-      { buttons: Array(3).fill(null).map(() => Array(4).fill('')), knobs: [{ ccw: '', press: '', cw: '' }, { ccw: '', press: '', cw: '' }] },
       { buttons: Array(3).fill(null).map(() => Array(4).fill('')), knobs: [{ ccw: '', press: '', cw: '' }, { ccw: '', press: '', cw: '' }] }
     ]
   },
   activeLayer: 0,
   selectedTarget: { type: 'button', row: 0, col: 0 },
   activeModifiers: new Set(),
-  activePaletteTab: 'media',
+  activePaletteTab: 'figma',
   searchQuery: '',
   isRecording: false,
   deviceConnected: false
@@ -661,17 +659,6 @@ function setupKeystrokeRecorder() {
 
 // Setup Event Listeners
 function setupEvents() {
-  // Layer Tabs
-  document.querySelectorAll('.layer-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.layer-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      state.activeLayer = parseInt(tab.dataset.layer, 10);
-      renderMacropad();
-      updateInspector();
-    });
-  });
-
   // Knob Zone Clicks
   document.querySelectorAll('.knob-module').forEach(module => {
     const kIndex = parseInt(module.dataset.knobIndex, 10);

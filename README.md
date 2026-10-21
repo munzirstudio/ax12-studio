@@ -9,7 +9,6 @@ Designed specifically for designers and creators who want an intuitive graphical
 ## Features
 
 - **True-to-Life AX12 Canvas**: Interactive representation of the $3 \times 4$ mechanical keycap grid and dual rotary knobs.
-- **3 Hardware Mode Layers**: Switch between Mode 1, Mode 2, and Mode 3 matching the physical hardware mode switch.
 - **Dual Rotary Knobs**: Full support for all 3 trigger actions per knob:
   - ↺ Turn Left (Counter-Clockwise - CCW)
   - 🔘 Center Press
